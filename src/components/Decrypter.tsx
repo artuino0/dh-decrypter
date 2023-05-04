@@ -26,12 +26,23 @@ const Decrypter = (props: Props) => {
 
   return (
     <>
-      <h1 className="animate__animated animate__fadeIn"></h1>
-      <div className="formulario animate__animated animate__fadeInUp">
-        <label htmlFor="cadena-encriptada">Ingrese la cadena encriptada</label>
-        <input placeholder="john000doe000123" type="text" name="cadena-encriptada" id="cadena-encriptada" v-model="cadenaEncriptada" onChange={(e) => setCadena(e.target.value)} />
-        {cadena}
-        <button onClick={() => desencritarString()}>Desencriptar Cadena</button>
+      <div className="flex flex-col mx-auto text-center w-[500px] formulario animate__animated animate__fadeInUp">
+        <h1 className="animate__animated animate__fadeIn text-4xl font-bold mb-4">Desencriptador</h1>
+        <label htmlFor="cadena-encriptada" className="mb-1">
+          Ingrese la cadena encriptada
+        </label>
+        <input
+          placeholder="john000doe000123"
+          type="text"
+          className="text-center py-3 rounded-lg w-10/12 m-auto outline-blue-500"
+          name="cadena-encriptada"
+          id="cadena-encriptada"
+          v-model="cadenaEncriptada"
+          onChange={(e) => setCadena(e.target.value)}
+        />
+        <button className="bg-green-500 mx-auto px-5 py-3 rounded-lg w-fit mt-4" onClick={() => desencritarString()}>
+          Desencriptar Cadena
+        </button>
       </div>
     </>
   );
