@@ -3,12 +3,13 @@ import { IResultado } from "../interfaces/resultado";
 
 interface Props {
   setResultado: (data: IResultado) => void;
+  setError: (value: boolean) => void;
 }
 
 const Decrypter = (props: Props) => {
   const [cadena, setCadena] = useState("");
 
-  const { setResultado } = props;
+  const { setResultado, setError } = props;
 
   const validarString = (): boolean => {
     const regex = /^[a-zA-ZñÑ]+0+[a-zA-ZñÑ]+0+\d+$/;
@@ -18,8 +19,11 @@ const Decrypter = (props: Props) => {
   const desencritarString = () => {
     console.log(validarString());
     if (!validarString()) {
+      setResultado({ first_name: "", last_name: "", id: "" });
+      setError(true);
       return;
     }
+    setError(false);
     const partes = cadena.split(/0+/);
     setResultado({ first_name: partes[0], last_name: partes[1], id: partes[2] });
   };
@@ -34,7 +38,7 @@ const Decrypter = (props: Props) => {
         <input
           placeholder="john000doe000123"
           type="text"
-          className="text-center py-3 rounded-lg w-10/12 m-auto outline-blue-500"
+          className="text-center text-black py-3 rounded-lg w-10/12 m-auto outline-blue-500"
           name="cadena-encriptada"
           id="cadena-encriptada"
           v-model="cadenaEncriptada"
