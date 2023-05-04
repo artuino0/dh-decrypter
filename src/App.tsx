@@ -7,9 +7,10 @@ function App() {
   const [resultado, setResultado] = useState<IResultado>({ first_name: "", last_name: "", id: "" });
 
   return (
-    <>
+    <div>
       <Decrypter setResultado={setResultado} />
-    </>
+      {JSON.stringify(resultado)}
+    </div>
   );
 }
 

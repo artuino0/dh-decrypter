@@ -10,16 +10,16 @@ const Decrypter = (props: Props) => {
 
   const { setResultado } = props;
 
-  const validarString = () => {
-    const regex = /^[a-zA-Z]+0+[a-zA-Z]+0+\d+$/;
+  const validarString = (): boolean => {
+    const regex = /^[a-zA-ZñÑ]+0+[a-zA-ZñÑ]+0+\d+$/;
     return regex.test(cadena);
   };
 
   const desencritarString = () => {
+    console.log(validarString());
     if (!validarString()) {
       return;
     }
-
     const partes = cadena.split(/0+/);
     setResultado({ first_name: partes[0], last_name: partes[1], id: partes[2] });
   };
@@ -30,7 +30,8 @@ const Decrypter = (props: Props) => {
       <div className="formulario animate__animated animate__fadeInUp">
         <label htmlFor="cadena-encriptada">Ingrese la cadena encriptada</label>
         <input placeholder="john000doe000123" type="text" name="cadena-encriptada" id="cadena-encriptada" v-model="cadenaEncriptada" onChange={(e) => setCadena(e.target.value)} />
-        <button onClick={() => desencritarString}>Desencriptar Cadena</button>
+        {cadena}
+        <button onClick={() => desencritarString()}>Desencriptar Cadena</button>
       </div>
     </>
   );
